@@ -25,18 +25,37 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className="dark">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground`}>
         <ClerkProvider>
           <SignedOut>
-            <div className="min-w-screen min-h-screen flex justify-center items-center h-screen">
-            <SignIn routing="hash"/>
+            <div className="min-w-screen min-h-screen flex justify-center items-center h-screen bg-background">
+              <SignIn
+                routing="hash"
+                appearance={{
+                  variables: {
+                    colorPrimary: "#6366f1",
+                    colorBackground: "#18181b",
+                    colorText: "#f4f4f5",
+                    colorInputBackground: "#27272a",
+                    colorInputText: "#f4f4f5",
+                    borderRadius: "0.75rem",
+                    fontFamily: "inherit",
+                  },
+                  elements: {
+                    card: "shadow-none border border-border bg-card",
+                    formButtonPrimary: "bg-primary text-primary-foreground hover:bg-primary/90",
+                    headerTitle: "text-2xl font-bold",
+                    headerSubtitle: "text-muted-foreground",
+                    socialButtonsBlockButton: "bg-muted text-foreground hover:bg-muted/80",
+                    footerAction: "text-muted-foreground",
+                  },
+                }}
+              />
             </div>
-            </SignedOut>
+          </SignedOut>
           <SignedIn>
-          {children}
+            {children}
           </SignedIn>
         </ClerkProvider>
       </body>
